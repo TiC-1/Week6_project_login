@@ -21,7 +21,9 @@
   "dependencies": {
     "env2": "^2.2.0",
     "express": "^4.16.3",
-    "pg": "^7.4.1"
+    "jsonwebtoken": "^8.2.0",
+    "pg": "^7.4.1",
+    "querystring": "^0.2.0"
   },
   "devDependencies": {
     "nodemon": "^1.17.1",
