@@ -7,7 +7,7 @@ const qs = require('querystring');
 
 const db = require("./database/db_connection.js");
 
-const hashPassword = require('./passwordHandler.js').hashPassword;
+const comparePasswords = require('./passwordHandler.js').comparePasswords;
 
 const bcrypt = require("bcryptjs");
 
@@ -43,19 +43,19 @@ module.exports = (req, res) => {
 
       req.on('end', function () {
           var loginData = qs.parse(info);
+          var hashedpassword = '$2a$10$/VEP0V7yxcHvnen09h1VHuJ73wlK1wSSuFOKzC.vpBdwePR2zxl96';
+          // Query al DB logindata.email estrarre dal db
 
-          // Query al DB
-
-          hashPassword(loginData.password, function (err, result) {
-            console.log(result);
-
+          comparePasswords(loginData.password, hashedpassword , function (err, result) {
+            console.log(result); // result e la pssword hashed
+            console.log('errore' + err);
 
           });
           console.log(loginData);
 
       });
 
-
+      // di qui in poi va eseguito solo se c 'è il match degli hash
       const cookie = sign(userDetails, SECRET);
       return readFile(
         './public/posts.html',
@@ -71,7 +71,7 @@ module.exports = (req, res) => {
           return res.end(data);
         }
       );
-
+      //fino a qui
 
     default:
       res.writeHead(
