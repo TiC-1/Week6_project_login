@@ -13,6 +13,7 @@ CREATE TABLE posts (
   id SERIAL PRIMARY KEY,
   title VARCHAR(255),
   content VARCHAR(255),
+  user_id INT UNSIGNED,
   liked BOOLEAN,
   FOREIGN KEY (user_id) REFERENCES users (id)
 );
