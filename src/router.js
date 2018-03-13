@@ -5,6 +5,8 @@ const { parse } = require('cookie');
 const { sign, verify } = require('jsonwebtoken');
 const qs = require('querystring');
 
+const db = require("./database/db_connection.js");
+
 const hashPassword = require('./passwordHandler.js').hashPassword;
 
 const bcrypt = require("bcryptjs");
@@ -41,8 +43,13 @@ module.exports = (req, res) => {
 
       req.on('end', function () {
           var loginData = qs.parse(info);
+
+          // Query al DB
+
           hashPassword(loginData.password, function (err, result) {
             console.log(result);
+
+
           });
           console.log(loginData);
 
