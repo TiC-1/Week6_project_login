@@ -1,3 +1,10 @@
+var my_cookie = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFkbyBLdWtpYyIsImFkbWluIjp0cnVlLCJpYXQiOjE0NjQyOTc4ODV9.Y47kJvnHzU9qeJIN48_bVna6O0EDFiMiQ9LpNVDFymM";
+// var my_cookie = document.cookie;
+
+if (cookieReader(my_cookie)){
+  document.location.href = './posts.html';
+}
+
 document.getElementById("login_form").addEventListener("submit", function(event) {
   event.preventDefault();
 
@@ -22,7 +29,5 @@ document.getElementById("login_form").addEventListener("submit", function(event)
 
   // display user warning message
   document.getElementById("message").innerHTML = warningMessage;
-
   // updateStateFromCity(updateDOM, location)
-
 });
