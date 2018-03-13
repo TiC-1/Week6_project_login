@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "NODE_ENV=test tape test/*.test.js | tap-spec",
-    "dev":"nodemon server.js",
-    "start":"node server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
