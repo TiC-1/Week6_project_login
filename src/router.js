@@ -1,19 +1,13 @@
-// var express = require('express');
-// var router = express.Router();
-// var app = express();
-//
-// app.get('/', function (req, res) {
-//   res.send('Hello World!');
-// });
-//
-// module.exports = router;
-
 'use strict';
 
 const { readFile } = require('fs');
 const { parse } = require('cookie');
 const { sign, verify } = require('jsonwebtoken');
 const qs = require('querystring');
+
+const hashPassword = require('./passwordHandler.js').hashPassword;
+
+const bcrypt = require("bcryptjs");
 
 const SECRET = process.env.SECRET || 'poiugyfguhijokpkoihugyfyguhijo';
 
@@ -47,8 +41,13 @@ module.exports = (req, res) => {
 
       req.on('end', function () {
           var loginData = qs.parse(info);
+          hashPassword(loginData.password, function (err, result) {
+            console.log(result);
+          });
           console.log(loginData);
+
       });
+
 
       const cookie = sign(userDetails, SECRET);
       return readFile(
