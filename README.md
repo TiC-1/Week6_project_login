@@ -37,11 +37,13 @@ As a user I want to:
 ## Database schema
 2 tables:
 - users
-  - user_id _(auto incremental)_
-  - user_name
-  - user_email
+  - id _(auto incremental)_
+  - username
+  - email
+  - PASSWORD
 - posts
-  - posts_id _(auto incremental)_
-  - post_title
-  - post_content
-  - like
+  - id _(auto incremental)_
+  - title
+  - content
+  - like BOOLEAN
+  - FOREIGN KEY (user_id) REFERENCES users (id)
