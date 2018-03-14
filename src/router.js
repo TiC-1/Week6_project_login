@@ -19,10 +19,14 @@ const comparePasswords = require('./passwordHandler.js').comparePasswords;
 
 const bcrypt = require("bcryptjs");
 
+const postsHandler = require("./postsHandler");
+
 const SECRET = process.env.SECRET || 'poiugyfguhijokpkoihugyfyguhijo';
 
 
 const notFoundPage = '<p style="font-size: 10vh; text-align: center;">404!</p>';
+
+
 
 module.exports = (req, res) => {
   switch (`${req.method} ${req.url}`) {
@@ -98,6 +102,10 @@ module.exports = (req, res) => {
         });
 
       });
+      break;
+
+    case "GET /posts":
+      postsHandler.index(req, res);
       break;
 
     case 'GET /logout':
