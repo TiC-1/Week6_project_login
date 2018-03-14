@@ -2,10 +2,11 @@
 function tokenReader(token) {
   var splittedToken = token.split('.');
   var payload = JSON.parse(atob(splittedToken[1]));
-  return(payload);
+  return (payload);
 }
 
-// Generic function to creat an HTML list from an array
+
+// Generic function to create an HTML list from an array of values (NOT objects)
 function createList(array, listClass, listItemClass) {
   // Create a new <ul></ul> and add a class
   var ul_node = document.createElement('ul');
@@ -24,6 +25,33 @@ function createList(array, listClass, listItemClass) {
     li_node.setAttribute('class', listItemClass);
     // Add son content from 'arrayItem'
     li_node.innerHTML = arrayEl;
+    // Return li to the parent function (renderState)
+    return li_node;
+    console.log(li_node);
+  };
+
+};
+
+
+// Generic function to create an HTML list from the array of posts (objects)
+function createPostsList(array, listClass, listItemClass) {
+  // Create a new <ul></ul> and add a class
+  var ul_node = document.createElement('ul');
+  ul_node.setAttribute('class', listClass);
+  // Insert <li> calling createLI function
+  for (var i = 0; i < postsNumbers; i++) {
+    ul_node.appendChild(createPostsListItem(array[i], listItemClass));
+  }
+  console.log(ul_node);
+  return ul_node;
+
+  // Embeded generic function to create list items
+  function createPostsListItem(arrayEl, listItemClass) {
+    // Create a new <li></li> and add a class
+    var li_node = document.createElement("li");
+    li_node.setAttribute('class', listItemClass);
+    // Add son content from 'arrayItem'
+    li_node.innerHTML = '<span class="post_content">'+ arrayEl.content + '</span><span class="post_author">' + arrayEl.author + '</span>';
     // Return li to the parent function (renderState)
     return li_node;
     console.log(li_node);
