@@ -120,12 +120,19 @@ module.exports = (req, res) => {
 
 
     default:
-      res.writeHead(
-        404, {
-          'Content-Type': 'text/html',
-          'Content-Length': notFoundPage.length
+      var fileName = req.url;
+      var fileType = req.url.split(".")[1];
+      readFile(__dirname + "/../public" + fileName, function(error, file) {
+        if (error) {
+          res.writeHead(404, "Content-Type:text/html");
+          res.end("<h1>Sorry, page not found</h1>");
+        } else {
+          res.writeHead(200, {
+            "Content-Type": "text/" + fileType
+          });
+          res.end(file);
         }
-      );
-      return res.end(notFoundPage);
+      });
+
   }
 }
