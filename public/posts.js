@@ -1,3 +1,7 @@
+var token = provideToken();
+var postsArray = providePostsList();
+
+
 // Print on screen "hello username !"
 document.getElementById("user_header").innerHTML = "Hello " + tokenReader(token).name + "!";
 
@@ -10,3 +14,5 @@ function renderPostsList(postsArray) {
   // Replace previous 'container'
   container.innerHTML = postsList;
 }
+
+// "<span>" + arrayItem.content + "</span><span>" + arrayItem.author + "</span>";

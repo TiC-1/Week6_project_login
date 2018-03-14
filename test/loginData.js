@@ -1,7 +1,15 @@
 function provideLoginData() {
-  var loginData = {
-    email: 'toto@gmail.com',
-    password: 'toto'
-  };
+  var loginData = [{
+    email: '',
+    password: ''
+  },
+  {
+    email: 'toto',
+    password: '123'
+  },
+  {
+    email: 'toto@domain.com',
+    password: 'moreThan6characters'
+  }];
   return loginData;
 }

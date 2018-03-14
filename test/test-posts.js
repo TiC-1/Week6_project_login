@@ -1,4 +1,4 @@
-// READ TOKEN
+// DISPLAY USER NAME
 test("Test read token", function(assert) {
   var token = tokenReader(provideToken());
   assert.equal(token.admin, true, "Token 'admin' property is true");
