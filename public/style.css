@@ -1,0 +1,57 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  /* font-family: 'Nunito', sans-serif; */
+  font-family: 'Bungee Inline', cursive;
+
+  height: 100vh;
+  /* background-color: #eee; */
+  /* background-image: url(./assets/images/bird.jpg); */
+}
+
+
+.mainContainer {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  z-index: -10;
+  padding-bottom: 100px;
+}
+
+.header {
+  height: 200px;
+  /* background-image: url(./assets/images/bird.jpg); */
+  background-image: url(./assets/images/pigeons.jpg);
+  background-position: center;
+  background-size: 150%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login_section {
+  height: 400px;
+  background-image: url(./assets/images/bird.jpg);
+  /* src="file://public/assets/images/bird.jpg" */
+  background-position: center;
+  background-size: 150%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header_title {
+  font-family: 'Bungee Inline', cursive;
+  color: white;
+  opacity: 0.9;
+  font-size: 2rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  text-align: center;
+}
