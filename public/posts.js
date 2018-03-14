@@ -12,7 +12,7 @@ if ((token) && tokenReader(token).admin == true) {
   // Print screen Add post button
   document.getElementById("addpost_form").innerHTML =
     '<form id="post_add" class="post_add" action="post/add" method="post">' +
-    '<input type = "submit" role = "button" name = "" value = "Add post" >' +
+    '<input type = "submit" role = "button" name = "" value = "" >' +
     '</form>';
   // Set visible posts to all
   postsNumbers = postsArray.length;

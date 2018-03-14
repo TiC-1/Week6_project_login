@@ -125,7 +125,17 @@ body {
   margin-right: auto;
 }
 
-.post_add{
+.post_add input{
+    margin-left: 20px;
+    position: fixed;
+    bottom: 20px;
+    width: 4%;
+    border: none;
+    background: url('./assets/images/add.svg');
+    background-repeat: no-repeat;
+    background-size: 60px;
+    padding: 30px;
+    background-position: right;
 
 }
 
@@ -138,13 +148,15 @@ body {
 }
 
 .post{
+  font-family: 'Nunito', sans-serif;
   padding-bottom: 10px;
   background: white;
   margin: 2px;
-  
+  list-style: none;
 }
 
 .post_content{
+
 }
 
 .post_author{
