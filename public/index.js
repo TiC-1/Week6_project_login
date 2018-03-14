@@ -1,33 +1,61 @@
-var my_cookie = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkFkbyBLdWtpYyIsImFkbWluIjp0cnVlLCJpYXQiOjE0NjQyOTc4ODV9.Y47kJvnHzU9qeJIN48_bVna6O0EDFiMiQ9LpNVDFymM";
-// var my_cookie = document.cookie;
+//
+function checkUserStatus {
 
-if (cookieReader(my_cookie)){
-  document.location.href = './posts.html';
+  // Function to check if token contains logged_in=true
+  function redirectIfLogin(token) {
+    // *** To be changed to .logged_in == true
+    if (tokenReader(token).admin == true) {
+      // *** To be changed to end point /posts
+      // window.location.href = './posts.html';
+      return token;
+      // if no token or token not validated, listen to loggin form data
+    } else {
+      var allowSubmit = false;
+      listenToForm();
+    }
+  }
 }
 
-document.getElementById("login_form").addEventListener("submit", function(event) {
-  event.preventDefault();
+function listenToForm() {
+  document.getElementById("login_form").addEventListener("submit", function(event) {
 
-  // select email input
-  var userEmail = event.target.querySelectorAll("input")[0].value;
-  // select password input
-  var userPassword = event.target.querySelectorAll("input")[1].value;
+    if (!allowSubmit) {
+      event.preventDefault();
+      // Get email input value
+      var userEmail = event.target.querySelectorAll("input")[0].value;
+      // Get password input value
+      var userPassword = event.target.querySelectorAll("input")[1].value;
+      // Display login warning message
+      displayLoginWarning(userEmail, userPassword);
 
+      // Display user warning message
+      function displayLoginWarning(email, password) {
+        // Call appropriate function to build warning
+        buildLoginWarning(email, password);
+        // Set html section 'message_container' as container
+        var container = document.getElementById("message_container");
+        // Display warning in container
+        document.getElementById(container).innerHTML = createList(warning);
 
-  // check some input values and add infos to user global warning message
-  var warningMessage = '';
-
-  if (userEmail == '') {
-    warningMessage += '<p>Enter email</p>';
-  }
-  if (userPassword == '') {
-    warningMessage += '<p>Enter password</p>';
-  }
-  if (userPassword != '' && userPassword.length < 6) {
-    warningMessage += '<p>Password must be at least 6 characters</p>';
-  }
-
-  // display user warning message
-  document.getElementById("message").innerHTML = warningMessage;
-  // updateStateFromCity(updateDOM, location)
-});
+        // Check some input values and add infos to user global warning message
+        function buildLoginWarning(email, password) {
+          var warning = [];
+          if (email == '') {
+            warning.push('<p>Enter email</p>');
+          }
+          if (password == '') {
+            warning.push('<p>Enter password</p>');
+          }
+          if (password != '' && password.length < 6) {
+            warning.push('<p>Password must be at least 6 characters</p>');
+          }
+          if (warning != []) {
+            return warning;
+          } else {
+            allowSubmit = true;
+          }
+        }
+      }
+    }
+  });
+}
