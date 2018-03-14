@@ -1,3 +1,4 @@
+
 var token = provideToken();
 var postsArray = providePostsList();
 console.log(token, postsArray);
@@ -5,11 +6,11 @@ console.log(token, postsArray);
 var postsNumbers = 0;
 
 // Check token so see if user is logged in
-if ((token) && tokenReader(token).admin == false) {
+if ((token) && tokenReader(token).admin == true) {
   // Print on screen "hello username !"
   document.getElementById("user_header").innerHTML = "<p>Hello " + tokenReader(token).name + "!</p>";
   // Print screen Add post button
-  document.getElementById("add_post_form").innerHTML =
+  document.getElementById("addpost_form").innerHTML =
     '<form id="post_add" class="post_add" action="post/add" method="post">' +
     '<input type = "submit" role = "button" name = "" value = "Add post" >' +
     '</form>';
