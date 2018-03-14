@@ -108,7 +108,6 @@ body {
 }
 }
 
-
 .warning {
   width: 60%;
   text-align: center;
@@ -119,6 +118,38 @@ body {
   margin-right: auto;
 }
 
+.user_header{
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.post_add{
+
+}
+
+.posts_container{
+  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.post{
+  padding-bottom: 10px;
+  background: white;
+  margin: 2px;
+  
+}
+
+.post_content{
+}
+
+.post_author{
+
+}
 footer {
   text-align: center;
 
