@@ -3,19 +3,17 @@ BEGIN;
 DROP TABLE IF EXISTS posts, users;
 
 CREATE TABLE users (
-  id SERIAL PRIMARY KEY,
+  user_id SERIAL PRIMARY KEY,
   username VARCHAR(255),
   email VARCHAR(255),
-  password VARCHAR(255) 
+  password VARCHAR(255)
 );
 
 CREATE TABLE posts (
-  id SERIAL PRIMARY KEY,
-  title VARCHAR(255),
+  post_id SERIAL PRIMARY KEY,
   content VARCHAR(255),
-  user_id INT UNSIGNED,
-  liked BOOLEAN,
-  FOREIGN KEY (user_id) REFERENCES users (id)
+  created_id INT references users(user_id),
+  liked BOOLEAN
 );
 
 
