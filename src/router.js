@@ -51,18 +51,36 @@ module.exports = (req, res) => {
         info += data;
       });
 
-      req.on('end', function() {
+      req.on('end', function(err) {
+
         var loginData = qs.parse(info);
-        var mail = "'" + loginData.email + "'";
-        // Query al DB
-        db.query("select password from users where email = " + mail + ";", function(err, result) {
-          var hashPassword = JSON.stringify(result.rows).slice(14, 74)
-            console.log(hashPassword);
-          comparePasswords(loginData.password, hashPassword, function (err, result) {
-            if (result == false) {
-              console.log("fail");
+        db.query("select password from users where email = ($1);", [loginData.email], function(err, result) {
+          comparePasswords(loginData.password, result.rows[0].password, function (err, result) {
+            if (result == true) {
+              const cookie = sign(userDetails, SECRET);
+              return readFile(
+                './public/posts.html',
+                (err, data) => {
+                  res.writeHead(
+                    200, {
+                      'Content-Type': 'text/html',
+                      'Content-Length': data.length,
+                      'Set-Cookie': `jwt=${cookie}; HttpOnly`
+                    }
+                  );
+                  return res.end(data);
+                }
+              );
+
             } else {
-              console.log("ok");
+              res.writeHead(
+                404, {
+                  'Content-Type': 'text/html',
+                  'Content-Length': notFoundPage.length
+                }
+              );
+              return res.end(notFoundPage);
+
             }
           });
           // console.log("la pass presa dal db è", hashPassword);
@@ -73,22 +91,7 @@ module.exports = (req, res) => {
         });
 
       });
-
-
-      const cookie = sign(userDetails, SECRET);
-      return readFile(
-        './public/posts.html',
-        (err, data) => {
-          res.writeHead(
-            200, {
-              'Content-Type': 'text/html',
-              'Content-Length': data.length,
-              'Set-Cookie': `jwt=${cookie}; HttpOnly`
-            }
-          );
-          return res.end(data);
-        }
-      );
+break;
 
 
     default:
