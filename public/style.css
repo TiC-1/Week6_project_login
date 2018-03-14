@@ -7,12 +7,13 @@
 body {
   /* font-family: 'Nunito', sans-serif; */
   font-family: 'Bungee Inline', cursive;
-
+  font-size: 18px;
   height: 100vh;
+  background: #f1f1f1;
   /* background-color: #eee; */
   /* background-image: url(./assets/images/bird.jpg); */
 }
-
+/*STYLING INDEX.HTML PAGE */
 
 .mainContainer {
   width: 100%;
@@ -35,15 +36,43 @@ body {
 }
 
 .login_section {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
   height: 400px;
-  background-image: url(./assets/images/bird.jpg);
+  /*background-image: url(./assets/images/bird.jpg);*/
   /* src="file://public/assets/images/bird.jpg" */
   background-position: center;
   background-size: 150%;
-  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 6px;
+}
+
+.login_form {
+  width: 100%;
+}
+
+.login_form input {
+  background: white;
+  width: 100%;
+  border: 0;
+  outline: 0;
+  padding: 1em;
+  @include border-radius(8px);
+  display: block;
+  width: 100%;
+  margin-top: 1em;
+  font-family: 'Merriweather', sans-serif;
+  @include box-shadow(0 1px 1px rgba(black, 0.1));
+  resize: none;
+  &:focus {
+    @include box-shadow(0 0px 2px rgba($red, 1) !important);
+  }
+}
+
 }
 
 .header_title {
@@ -54,4 +83,122 @@ body {
   letter-spacing: 0.2rem;
   text-transform: uppercase;
   text-align: center;
+}
+
+.login_button {
+  width: 100%;
+  display: inline-block;
+  padding: 9px 15px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: $font-weight-bold;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-repeat: repeat-x;
+  background-position: -1px -1px;
+  background-size: 110% 110%;
+  border: 1px solid transparentize($black, 0.8);
+  border-radius: 0.25em;
+  background: #E54D42 !important;
+  color: white;
+  cursor: pointer;
+&:hover {
+  @include box-shadow(0 1px 1px 1px rgba(#aaa, 0.6));
+}
+}
+
+.warning {
+  width: 60%;
+  text-align: center;
+  background: #FFDCE0;
+  color: #86181D;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/*STYLING POSTS.HTML PAGE AND BLOGPOSTS*/
+
+.user_header{
+  width: 100%;
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background: #E54D42;
+  color: white;
+  padding: 5px;
+  font-size: 26px;
+  letter-spacing: 1px;
+margin-top: auto;
+
+}
+
+.post_add input{
+    margin-left: 20px;
+    position: fixed;
+    bottom: 20px;
+    width: 4%;
+    border: none;
+    background: url('./assets/images/add.svg');
+    background-repeat: no-repeat;
+    background-size: 60px;
+    padding: 30px;
+    background-position: right;
+
+}
+
+.posts_container{
+  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.post{
+  font-family: 'Nunito', sans-serif;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  background: white;
+  margin: 2px;
+  list-style: none;
+    margin-bottom: 20px;
+
+}
+
+.post_content{
+ display:inline-flex;
+ margin-left:14px;
+ margin-right:14px;
+  padding:10px
+}
+
+.post_author{
+  background: #E54D42;
+  color: white;
+  padding: 5px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  border-radius: 15%;
+  text-align:center;
+  margin:24px;
+
+}
+footer {
+  text-align: center;
+
+  padding: 30px;
+  color: #999;
+  min-height: 100px;
+  margin-top: 40px;
+}
+
+@media (min-width: 768px) {
+  .header {
+    height: 400px;
+  }
+
 }
