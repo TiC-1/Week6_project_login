@@ -13,6 +13,7 @@ body {
   /* background-color: #eee; */
   /* background-image: url(./assets/images/bird.jpg); */
 }
+/*STYLING INDEX.HTML PAGE */
 
 .mainContainer {
   width: 100%;
@@ -100,7 +101,7 @@ body {
   background-size: 110% 110%;
   border: 1px solid transparentize($black, 0.8);
   border-radius: 0.25em;
-  background: #28A745 !important;
+  background: #E54D42 !important;
   color: white;
   cursor: pointer;
 &:hover {
@@ -118,11 +119,21 @@ body {
   margin-right: auto;
 }
 
+/*STYLING POSTS.HTML PAGE AND BLOGPOSTS*/
+
 .user_header{
+  width: 100%;
   text-align: center;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  background: #E54D42;
+  color: white;
+  padding: 5px;
+  font-size: 26px;
+  letter-spacing: 1px;
+margin-top: auto;
+
 }
 
 .post_add input{
@@ -150,16 +161,30 @@ body {
 .post{
   font-family: 'Nunito', sans-serif;
   padding-bottom: 10px;
+  padding-top: 10px;
   background: white;
   margin: 2px;
   list-style: none;
+    margin-bottom: 20px;
+
 }
 
 .post_content{
-
+ display:inline-flex;
+ margin-left:14px;
+ margin-right:14px;
+  padding:10px
 }
 
 .post_author{
+  background: #E54D42;
+  color: white;
+  padding: 5px;
+  font-size: 16px;
+  letter-spacing: 1px;
+  border-radius: 15%;
+  text-align:center;
+  margin:24px;
 
 }
 footer {
@@ -169,4 +194,11 @@ footer {
   color: #999;
   min-height: 100px;
   margin-top: 40px;
+}
+
+@media (min-width: 768px) {
+  .header {
+    height: 400px;
+  }
+
 }
