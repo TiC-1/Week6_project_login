@@ -55,6 +55,20 @@ module.exports = (req, res) => {
 
         var loginData = qs.parse(info);
         db.query("select password from users where email = ($1);", [loginData.email], function(err, result) {
+          // if (result.length == 0) {
+          //   return readFile(
+          //     './public/index.html',
+          //     (err, data) => {
+          //       res.writeHead(
+          //         200, {
+          //           'Content-Type': 'text/html',
+          //           'Content-Length': data.length
+          //         }
+          //       );
+          //       return res.end(data);
+          //     }
+          //   );
+          // }
           comparePasswords(loginData.password, result.rows[0].password, function (err, result) {
             if (result == true) {
               const cookie = sign(userDetails, SECRET);
@@ -73,13 +87,26 @@ module.exports = (req, res) => {
               );
 
             } else {
-              res.writeHead(
-                404, {
-                  'Content-Type': 'text/html',
-                  'Content-Length': notFoundPage.length
+              return readFile(
+                './public/index.html',
+                (err, data) => {
+                  res.writeHead(
+                    200, {
+                      'Content-Type': 'text/html',
+                      'Content-Length': data.length
+                    }
+                  );
+                  return res.end(data);
                 }
               );
-              return res.end(notFoundPage);
+
+              // res.writeHead(
+              //   404, {
+              //     'Content-Type': 'text/html',
+              //     'Content-Length': notFoundPage.length
+              //   }
+              // );
+              // return res.end(notFoundPage);
 
             }
           });
