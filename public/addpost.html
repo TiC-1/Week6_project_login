@@ -3,8 +3,8 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Posts | Tweeter nostro</title>
-  <meta name="description" content="See posts list">
+  <title>Add post | Tweeter nostro</title>
+  <meta name="description" content="Add a new post">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./style.css">
 </head>
@@ -14,16 +14,18 @@
   <section id="main_section" class='main_container'>
 
     <header id="header" class="header">
-      <h1 class="header_title"></h1>
+      <h1 class="header_title">Tweeter nostro</h1>
     </header>
 
     <section id="user_header" class="user_header">
     </section>
 
-    <section id="addpost_form" class="addpost_form">
-    </section>
-
-    <section id="posts_container" class="posts_container">
+    <section id="createpost_container" class="createpost_container">
+      <form id="createpost_form" class="createpost_form" action="/post/create" method="post">
+        <label for="post_content">Your new post</label>
+        <textarea id="post_content" class="post_content" name="post_content" rows="8" cols="80" placeholder="Type yout post here"></textarea>
+        <input type="submit" role="button" class="createpost_button" name="" value="Create post">
+      </form>
     </section>
 
     <footer id="footer" class="footer">
@@ -33,10 +35,13 @@
 
   </section>
 
+
   <script src="./../test/token.js"></script>
   <script src="./../test/postsList.js"></script>
   <script src="./shared.js"></script>
   <script src="./posts.js"></script>
+
+
 
 </body>
 

@@ -18,7 +18,6 @@ function checkUserStatus() {
       return token;
       // if no token or token not validated, listen to loggin form data
     } else {
-      console.log('allowSubmit :' + allowSubmit);
       listenToForm();
     }
   }
