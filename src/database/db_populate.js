@@ -2,7 +2,7 @@ var fs = require("fs");
 var db = require("./db_connection.js");
 
 function applySchema(cb) {
-  fs.readFile(__dirname + "/db_schema.sql", function(err, result) {
+  fs.readFile(__dirname + "/db_new.sql", function(err, result) {
     if (err) {
       return cb(err);
     }
@@ -21,7 +21,7 @@ function populateDb(cb) {
     if (err) {
       return cb(err);
     }
-    fs.readFile(__dirname + "/db_data.sql", function(err, result) {
+    fs.readFile(__dirname + "/db_new.sql", function(err, result) {
       if (err) {
         return cb(err);
       }

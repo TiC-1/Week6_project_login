@@ -1,19 +1,30 @@
 'use strict';
 
-const { readFile } = require('fs');
-const { parse } = require('cookie');
-const { sign, verify } = require('jsonwebtoken');
+const {
+  readFile
+} = require('fs');
+const {
+  parse
+} = require('cookie');
+const {
+  sign,
+  verify
+} = require('jsonwebtoken');
 const qs = require('querystring');
 
 const db = require("./database/db_connection.js");
 
 const hashPassword = require('./passwordHandler.js').hashPassword;
+const comparePasswords = require('./passwordHandler.js').comparePasswords;
 
 const bcrypt = require("bcryptjs");
 
 const SECRET = process.env.SECRET || 'poiugyfguhijokpkoihugyfyguhijo';
 
-const userDetails = { userId: 5, role: 'admin' };
+const userDetails = {
+  userId: 5,
+  role: 'admin'
+};
 
 const notFoundPage = '<p style="font-size: 10vh; text-align: center;">404!</p>';
 
@@ -24,8 +35,7 @@ module.exports = (req, res) => {
         './public/index.html',
         (err, data) => {
           res.writeHead(
-            200,
-            {
+            200, {
               'Content-Type': 'text/html',
               'Content-Length': data.length
             }
@@ -37,21 +47,30 @@ module.exports = (req, res) => {
 
       var info = '';
 
-      req.on('data', function (data) {
-          info += data;
+      req.on('data', function(data) {
+        info += data;
       });
 
-      req.on('end', function () {
-          var loginData = qs.parse(info);
-
-          // Query al DB
-
-          hashPassword(loginData.password, function (err, result) {
-            console.log(result);
-
-
+      req.on('end', function() {
+        var loginData = qs.parse(info);
+        var mail = "'" + loginData.email + "'";
+        // Query al DB
+        db.query("select password from users where email = " + mail + ";", function(err, result) {
+          var hashPassword = JSON.stringify(result.rows).slice(14, 74)
+            console.log(hashPassword);
+          comparePasswords(loginData.password, hashPassword, function (err, result) {
+            if (result == false) {
+              console.log("fail");
+            } else {
+              console.log("ok");
+            }
           });
-          console.log(loginData);
+          // console.log("la pass presa dal db è", hashPassword);
+        });
+
+        hashPassword(loginData.password, function(err, result) {
+
+        });
 
       });
 
@@ -61,8 +80,7 @@ module.exports = (req, res) => {
         './public/posts.html',
         (err, data) => {
           res.writeHead(
-            200,
-            {
+            200, {
               'Content-Type': 'text/html',
               'Content-Length': data.length,
               'Set-Cookie': `jwt=${cookie}; HttpOnly`
@@ -75,8 +93,7 @@ module.exports = (req, res) => {
 
     default:
       res.writeHead(
-        404,
-        {
+        404, {
           'Content-Type': 'text/html',
           'Content-Length': notFoundPage.length
         }
