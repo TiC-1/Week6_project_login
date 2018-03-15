@@ -1,8 +1,10 @@
 // Generic function to read token in the cookie and return decoded payload
-function tokenReader(token) {
-  var splittedToken = token.split('.');
+function tokenReader(jwt) {
+  var splittedJWT = jwt.split('=');
+  var splittedToken = splittedJWT[1].split('.');
   var payload = JSON.parse(atob(splittedToken[1]));
-  return (payload);
+  console.log(payload);
+  return payload;
 }
 
 
@@ -58,7 +60,7 @@ function createPostsList(array, listClass, listItemClass) {
     var li_node = document.createElement("li");
     li_node.setAttribute('class', listItemClass);
     // Add son content from 'arrayItem'
-    li_node.innerHTML = '<span class="post_content">' + arrayEl.content + '</span><span class="post_author">' + arrayEl.author + '</span>';
+    li_node.innerHTML = '<span class="post_content">' + arrayEl.content + '</span><span class="post_author">' + arrayEl.username + '</span>';
     // Return li to the parent function (renderState)
     return li_node;
   };

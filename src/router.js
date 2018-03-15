@@ -46,7 +46,7 @@ module.exports = (req, res) => {
               const cookie = sign(userDetails, SECRET);
               res.writeHead(
                 302, {
-                  'Set-Cookie': `jwt=${cookie}; HttpOnly`,
+                  'Set-Cookie': `jwt=${cookie}`,
                   'Location': '/posts.html '
                 }
               );
