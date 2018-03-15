@@ -87,7 +87,7 @@ module.exports = (req, res) => {
       fileName = '/index.html';
 
     default:
-      var fileType = req.url.split(".")[1];
+      var fileType = fileName.split(".")[1];
       readFile(__dirname + "/../public" + fileName, function(error, file) {
         if (error) {
           res.writeHead(404, "Content-Type:text/html");
