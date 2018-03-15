@@ -23,36 +23,17 @@ const postsHandler = require("./postsHandler");
 
 const SECRET = process.env.SECRET || 'poiugyfguhijokpkoihugyfyguhijo';
 
-
 const notFoundPage = '<p style="font-size: 10vh; text-align: center;">404!</p>';
 
-
-
 module.exports = (req, res) => {
+  var fileName = req.url;
   switch (`${req.method} ${req.url}`) {
-    case 'GET /':
-      return readFile(
-        './public/index.html',
-        (err, data) => {
-          res.writeHead(
-            200, {
-              'Content-Type': 'text/html',
-              'Content-Length': data.length
-            }
-          );
-          return res.end(data);
-        }
-      );
     case 'POST /login':
-
       var info = '';
-
       req.on('data', function(data) {
         info += data;
       });
-
-      req.on('end', function(err) {
-
+      req.on('end', function() {
         var loginData = qs.parse(info);
         db.query("select password, user_id, username from users where email = ($1);", [loginData.email], function(err, result) {
           const userDetails = {
@@ -60,48 +41,32 @@ module.exports = (req, res) => {
             username: result.rows[0].username,
             loggedin: true
           };
-          console.log(userDetails);
           comparePasswords(loginData.password, result.rows[0].password, function(err, result) {
-            if (result == true) {
-
+            if (result === true) {
               const cookie = sign(userDetails, SECRET);
-              return readFile(
-                './public/posts.html',
-                (err, data) => {
-                  res.writeHead(
-                    200, {
-                      'Content-Type': 'text/html',
-                      'Content-Length': data.length,
-                      'Set-Cookie': `jwt=${cookie}; HttpOnly`
-                    }
-                  );
-                  return res.end(data);
+              res.writeHead(
+                302, {
+                  'Set-Cookie': `jwt=${cookie}; HttpOnly`,
+                  'Location': '/posts.html '
                 }
               );
-
             } else {
-              return readFile(
-                './public/index.html',
-                (err, data) => {
-                  res.writeHead(
-                    200, {
-                      'Content-Type': 'text/html',
-                      'Content-Length': data.length
-                    }
-                  );
-                  return res.end(data);
+              res.writeHead(
+                302, {
+                  'Location': '/index.html '
                 }
               );
-
             }
+            return res.end();
           });
         });
-
         hashPassword(loginData.password, function(err, result) {
-
         });
-
       });
+      break;
+
+    case "POST /post/create":
+      postsHandler.create(req, res);
       break;
 
     case "GET /posts":
@@ -115,12 +80,13 @@ module.exports = (req, res) => {
           'Set-Cookie': 'jwt=0; Max-Age=0'
         }
       );
-      return res.end();
+      res.end();
+      break;
 
-
+    case 'GET /':
+      fileName = '/index.html';
 
     default:
-      var fileName = req.url;
       var fileType = req.url.split(".")[1];
       readFile(__dirname + "/../public" + fileName, function(error, file) {
         if (error) {
@@ -133,6 +99,5 @@ module.exports = (req, res) => {
           res.end(file);
         }
       });
-
   }
 }
