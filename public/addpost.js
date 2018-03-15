@@ -17,7 +17,7 @@ checkUserStatus(token);
 function checkUserStatus(token) {
   console.log('Enter checkUserStatus function');
   // Check token so see if user is logged in
-  if ((token) && tokenReader(token).admin == true) {
+  if (token && tokenReader(token).loggedin) {
     // Print on screen "hello username !"
     document.getElementById("user_header").innerHTML = "<p>Hello " + tokenReader(token).name + "!</p>";
     // Print screen Add post form

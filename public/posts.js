@@ -1,13 +1,8 @@
 // *** VARIABLES ***
-
-var token = provideToken();
-var postsArray = providePostsList();
-console.log(token, postsArray);
-
 var postsNumbers = 0;
 
 // Check token so see if user is logged in
-if ((token) && tokenReader(token).admin == true) {
+if (token && tokenReader(token).loggedin) {
   // Print on screen "hello username !"
   document.getElementById("user_header").innerHTML = "<p>Hello " + tokenReader(token).name + "!</p>";
   // Print screen Add post button
@@ -31,7 +26,7 @@ if ((token) && tokenReader(token).admin == true) {
 // *** ACTIONS ***
 
 checkUserStatus(token);
-renderPostsList(postsArray);
+request(renderPostsList, '/posts');
 
 
 // *** FUNCTIONS ***

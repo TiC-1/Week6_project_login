@@ -1,6 +1,4 @@
 // *** VARIABLES ***
-
-var allowSubmit = false;
 var warning = [];
 var userEmail;
 var userPassword;
