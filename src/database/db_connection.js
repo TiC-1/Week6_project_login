@@ -3,11 +3,11 @@ var Pool = require("pg").Pool;
 var environment = process.env.NODE_ENV || "development";
 require("env2")("./config." + environment + ".env");
 
-if (!process.env.DB_URL) {
+if (!process.env.DATABASE_URL) {
   throw new Error("Connection data missing in configuration.");
 }
 
-var params = url.parse(process.env.DB_URL);
+var params = url.parse(process.env.DATABASE_URL);
 var userPass = params.auth.split(":");
 
 var options = {

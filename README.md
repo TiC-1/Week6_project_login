@@ -13,6 +13,10 @@ As a user I want to:
 - remove a post made by me.
 - like a post.
 
+## Wireframe
+![img-2258](https://user-images.githubusercontent.com/19515855/37418843-6e80c7fc-27b3-11e8-8818-7ed3445eb298.JPG)
+
+
 ## Stretch goals
 - edit posts.
 - delete the posts.
