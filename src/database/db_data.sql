@@ -6,11 +6,11 @@ INSERT INTO users (username, email, password) VALUES ('Alberto', 'alberto@tic.it
 INSERT INTO users (username, email, password) VALUES ('Claudio', 'claudio@tic.it', '$2a$10$c2Uszq3mNMMpWtoSe.ehpObRkwD/xkdtb9bQv2F6iqm2pqrJmMA0K');
 INSERT INTO users (username, email, password) VALUES ('Giulia', 'giulia@tic.it', '$2a$10$pgzgeR9rC55BIlLdF/Y.xOESABUA3qhtfy7YPCgyxpgM2KwQwijgq');
 
-INSERT INTO posts (content, created_id, liked) VALUES ('1 Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum', 1, false);
-INSERT INTO posts (content, created_id, liked) VALUES ('2 Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum', 4, false);
-INSERT INTO posts (content, created_id, liked) VALUES ('3 Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum', 3, false);
-INSERT INTO posts (content, created_id, liked) VALUES ('4 Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum', 2, false);
-INSERT INTO posts (content, created_id, liked) VALUES ('5 Lorem ipsum Lorem ipsumLorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum', 5, false);
+INSERT INTO posts (content, created_id, liked) VALUES ('Curabitur turpis. Phasellus accumsan cursus velit.', 1, false);
+INSERT INTO posts (content, created_id, liked) VALUES ('Proin faucibus arcu quis ante.', 4, false);
+INSERT INTO posts (content, created_id, liked) VALUES ('Nullam cursus lacinia erat.', 3, false);
+INSERT INTO posts (content, created_id, liked) VALUES ('Phasellus accumsan cursus velit.', 2, false);
+INSERT INTO posts (content, created_id, liked) VALUES ('Nunc nec neque. Integer tincidunt.', 5, false);
 
 
 COMMIT;

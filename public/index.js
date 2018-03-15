@@ -1,6 +1,4 @@
 // *** VARIABLES ***
-
-var allowSubmit = false;
 var warning = [];
 var userEmail;
 var userPassword;
@@ -16,13 +14,13 @@ checkUserStatus();
 // Global function checkUserStatus
 function checkUserStatus() {
   console.log('Enter checkUserStatus function');
-  redirectIfLogin();
+  redirectIfLogin(document.cookie);
 
   // Function to check if token contains logged_in=true
   function redirectIfLogin(token) {
     console.log('Enter redirectIfLogin function');
 
-    if (token && tokenReader(token).loggedin) {
+    if (document.cookie && tokenReader(document.cookie).loggedin) {
       window.location.href = '/posts.html';
       return token;
       // if no token or token not validated, listen to loggin form data

@@ -1,15 +1,12 @@
 // *** VARIABLES ***
 
-var token = provideToken();
-console.log(token);
-
 var warning = [];
 var postContent;
 
 
 // ***ACTIONS ***
 
-checkUserStatus(token);
+checkUserStatus(document.cookie);
 
 
 // *** FUNCTIONS ***
@@ -17,20 +14,20 @@ checkUserStatus(token);
 function checkUserStatus(token) {
   console.log('Enter checkUserStatus function');
   // Check token so see if user is logged in
-  if ((token) && tokenReader(token).admin == true) {
+  if (document.cookie && tokenReader(token).loggedin) {
     // Print on screen "hello username !"
-    document.getElementById("user_header").innerHTML = "<p>Hello " + tokenReader(token).name + "!</p>";
+    document.getElementById("user_header").innerHTML = "<p>Hello " + tokenReader(token).username + "!</p>";
     // Print screen Add post form
     document.getElementById("createpost_container").innerHTML =
       '<form id="createpost_form" class="createpost_form" action="/post/create" method="post">' +
       '<label for="post_content">Your new post</label>' +
-      '<textarea id="post_content" class="post_content" name="post_content" rows="8" cols="80" placeholder="Type your post here"></textarea>' +
+      '<textarea id="post_content" class="post_content" name="content" rows="8" cols="80" placeholder="Type your post here"></textarea>' +
       '<input type="submit" role="button" class="createpost_button" name="" value="Create post">' +
       '</form>'
     listenToForm();
   } else {
     document.getElementById("user_header").innerHTML = '<p>Access unauthorized to anonymous users! Sign in to add posts.<p>' +
-      '<form id="post_add" class="post_add" action="/" method="post">' +
+      '<form id="post_add" class="post_add" action="/" method="get">' +
       '<input type="submit" role="button" name="" value="Sign in">' +
       '</form>';
     // *** to change to end point /post/create
