@@ -16,6 +16,12 @@ As a user I want to:
 ## Wireframe
 ![img-2258](https://user-images.githubusercontent.com/19515855/37418843-6e80c7fc-27b3-11e8-8818-7ed3445eb298.JPG)
 
+## Setup 💻
+- clone Repo
+- create a postrgres DB importing our db_schema.sql & db_data.sql
+- "npm i" or "npm install"
+- run with "npm run dev" for local testing
+
 
 ## Stretch goals
 - edit posts.
