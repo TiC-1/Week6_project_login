@@ -8,10 +8,8 @@ Coding will be assign to 2 different teams: front-end and back-end. Development 
 
 ## User stories
 As a user I want to:
-- login to my profile.
+- login to my profile(see user example).
 - add a new post on the timeline.
-- remove a post made by me.
-- like a post.
 
 ## Wireframe
 ![img-2258](https://user-images.githubusercontent.com/19515855/37418843-6e80c7fc-27b3-11e8-8818-7ed3445eb298.JPG)
@@ -29,7 +27,7 @@ As a user I want to:
 ## Stretch goals
 - edit posts.
 - delete the posts.
-
+- like posts.
 
 ## Repository structure
 
