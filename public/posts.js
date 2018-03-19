@@ -55,7 +55,7 @@ function checkUserStatus(token) {
 
 function renderPostsList(err, postsArray) {
   // Set visible posts to all
-  postsNumbers = postsArray.length;
+  postsNumbers = postsNumbers || postsArray.length;
   // Set html section 'post_container' as container
   var container = document.getElementById("posts_container");
   // Replace previous 'container'

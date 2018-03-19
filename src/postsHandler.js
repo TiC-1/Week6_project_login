@@ -7,17 +7,20 @@ const {
   parse
 } = require('cookie');
 
+var post = require("./models/post");
+
 function index(request, response) {
-  db.query("SELECT post_id, content, username FROM users, posts WHERE created_id=user_id;", function(err, result) {
-    if (err) {
+  post.getAllWithUser()
+    .then(result => {
+      response.writeHead(200, {
+        "Content-Type": "application/json"
+      });
+      response.end(JSON.stringify(result.rows));
+    })
+    .catch(err => {
       response.writeHead(500);
       return response.end();
-    }
-    response.writeHead(200, {
-      "Content-Type": "application/json"
     });
-    response.end(JSON.stringify(result.rows));
-  });
 }
 
 function create(request, response) {
