@@ -26,7 +26,7 @@ if (actualCookie && tokenReader(actualCookie).loggedin) {
 // *** ACTIONS ***
 
 checkUserStatus(actualCookie);
-request(renderPostsList, '/posts');
+// request(renderPostsList, '/posts');
 
 
 // *** FUNCTIONS ***

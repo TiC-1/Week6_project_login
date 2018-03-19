@@ -1,0 +1,20 @@
+{{#unless loggedin}}
+  {{> login_form}}
+{{/unless}}
+
+<section id="posts_container" class="posts_container">
+  {{#each posts}}
+  <li class="post">
+    <span class="post_content">
+      {{this.content}}
+    </span>
+    <span class="post_author">{{this.username}}</span>
+  </li>
+  {{/each}}
+</section>
+
+<section id="addpost_form" class="addpost_form">
+  <form id="post_add" class="post_add" action="addpost.html" method="post">
+    <input role="button" name="" value="Add post" type="submit">
+  </form>
+</section>

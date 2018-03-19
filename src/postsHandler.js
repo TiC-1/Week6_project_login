@@ -10,12 +10,16 @@ const {
 var post = require("./models/post");
 
 function index(request, response) {
-  post.getAllWithUser()
+  var decodedToken = request.headers.cookie ? decode(parse(request.headers.cookie).jwt) : null;
+  var loggedin = false;
+  var numberOfPosts = 3;
+  if(decodedToken && decodedToken.userid) {
+    loggedin = true;
+    numberOfPosts = 10;
+  }
+  post.getAllWithUser(numberOfPosts)
     .then(result => {
-      response.writeHead(200, {
-        "Content-Type": "application/json"
-      });
-      response.end(JSON.stringify(result.rows));
+      response.render("posts", { posts: result.rows, loggedin: loggedin });
     })
     .catch(err => {
       response.writeHead(500);

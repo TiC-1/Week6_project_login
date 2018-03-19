@@ -1,9 +1,22 @@
 const express = require("express");
 const router = require("./src/router.js");
 const path = require("path");
+const exphbs = require("express-handlebars");
 const app = express();
 
 const PORT = process.env.PORT || 3000;
+
+app.set('views', path.join(__dirname, 'src', 'views'));
+app.set('view engine', 'hbs');
+app.engine(
+  'hbs',
+  exphbs({
+    extname: 'hbs',
+    layoutsDir: path.join(__dirname, 'src', 'views', 'layouts'),
+    partialsDir: path.join(__dirname, 'src', 'views', 'partials'),
+    defaultLayout: 'default'
+  })
+);
 
 app.use("/", router);
 
@@ -14,6 +27,7 @@ app.use((req, res) => {
 
 // create a 500 middleware sending the '500.html' file
 app.use((err, req, res, next) => {
+  console.log(err);
   res.status(500).sendFile(path.join(__dirname, 'public', '500.html'));
 });
 

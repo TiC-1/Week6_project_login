@@ -6,7 +6,7 @@ var userPassword;
 
 // *** ACTIONS ***
 
-checkUserStatus();
+// checkUserStatus();
 
 
 // *** FUNCTIONS ***
